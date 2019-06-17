@@ -1,0 +1,132 @@
+切换用户:su [存在的用户]
+切换目录:cd [目标目录]
+修改网卡配置:
+	cd /etc/sysconfig/network-scripts/
+	vi ifcfg-eth0
+显示当前所在的工作目录:pwd
+列出目录当中的内容(目录/文件):-lha
+	ls [-选项] [文件/目录路径]
+关机:shutdown -h 0
+清屏:ctrl+l/clear
+创建目录:mkdir [-选项][目录名]
+创建文件:touch [一个/多个文件]
+********************************
+查看帮助:--help
+查看cd命令帮助:man [命令]
+yum安装:yum install -y [安装文件]
+编辑模式:i/a/o/I/A/O
+行末模式:去除高亮:nohls
+命令行模式:
+	x:删除选择
+	u:撤销
+	yy:复制
+	p:粘贴
+	dd:删除行
+**************************************************
+权限管理:
+***************
+修改目录/文件:
+	chgrp [-选项] 组名称 文件/目录名称
+修改目录/文件的拥有者:
+	chown [-选项] 拥有者的名称 文件/目录名称
+修改目录/文件的权限操作:
+	chmod [-选项] 权限 文件/目录名称
+/bin是普通用户指令
+/sbin是超级管理指令:sudo,whereis也是超级管理指令
+	sudo [选项][linux指令]
+	在etc/sudoers中出现的使用者
+	
+	whereis[有效系统命令]
+*************************************************
+使用rpm安装finger软件包:
+rpm -ivh [完整rpm包名称]
+	-i:(install)安装     
+	-v:(view)显示安装的视图   
+	-h:()以人性化方式安装视图
+用finger查看root的信息:
+	finger root
+查看被安装的软件:
+	rpm -qa | grep [文件名称]
+	-q:(query) -a:(all)
+rpm -e卸载:
+	rpm -e [不完整/完整的rpm包名] --nodeps
+	--nodeps强制卸载
+******************************************************
+passwd更新/设置用户登录密码
+用户选择登录操作界面控制文件 vim /ect/inittab
+添加用户组:groupadd [-选项] 组名称
+	可以使用--help查看选项
+搜索/定位指定关键字内容:
+	grep 关键字 [文件的名称/路径]
+查看文件的大小:wc [选项] 文件名
+	-c:输出字节数统计
+	-m:输出字符数统计
+	-l:输出行数统计
+	-w:显示单词计数
+********************************************************
+删除用户组:groupdel 组名称
+修改用户组信息:groupmod [-选项] 组名称
+分析/etc/passwd用户文件(/sbin/nologin用户没有登录权限,/bin/bash用户有登录权限)
+分析/etc/shashow文件(用户密码文件)  !!!用户没有密码
+显示用户的相关信息:
+	id [存在的linux用户]
+显示用户的用户名:组名
+	groups [存在的linux用户]
+添加用户:useradd [-选项] 用户名称
+添加指定目录的用户:useradd -d [/home/指定的用户目录] 用户名
+添加用户归组到指定用户中:useradd -g [存在的组名称] 用户名
+删除用户:userdel [-选项] 用户名
+修改用户的信息:usermod [-选项] [新用户名称] 用户名
+删除文件/目录:rm [-选项][文件名称/路径]
+************************************************************
+复制文件/目录:cp [-选项][原文件/目录][目标位置]
+移动/剪切文件/目录:mv [-选项][原文件/目录][目标位置]
+*****************************************************
+cmd打开黑窗口--->ifconfig查找ip--->ping ip地址如果无法访问(请求超时),则此地址可以作为linux服务器的静态地址
+linux中:inet6 addr:如果没有ip值,代表当前linux没有配置过任何网络
+*************************************************************
+vim /etc/sysconfig/network-scripts/ifcfg-eth0查看网卡配置信息
+
+shell># service network restart	 #重启网卡
+shell># service network stop	 #停止网卡服务
+shell># service network star	 #开启网卡服务
+shell># service network status	 #查看网卡当前的状态
+
+service sshd start : 开启ssh协议
+
+
+service sshd restart : 重启ssh协议
+
+
+service sshd stop:停止(centos6默认开启,而centos5.5默认关闭)
+
+
+service sshd status:查看ssh的状态
+	
+
+CentOS7使用firewalld打开关闭防火墙与端口
+
+	
+firewalld的基本使用
+	
+启动： systemctl start firewalld
+	
+关闭： systemctl stop firewalld
+	
+查看状态： systemctl status firewalld 
+	
+开机禁用  ： systemctl disable firewalld
+	
+开机启用  ： systemctl enable firewalld
+
+
+shell># service vsftpd start	#启动
+shell># service vsftpd stop		#停止
+shell># service vsftpd status	#查看状态
+shell># service vsftpd restart	#重启
+shell># chkconfig vsftpd on		#加入系统，开机自动启用
+
+关防火墙:service iptables stop
+设置开机自动关闭防火墙: chkconfig iptables off
+防火墙状态:service iptables status
+开启Apache:service httpd start
